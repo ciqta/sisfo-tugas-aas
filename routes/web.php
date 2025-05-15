@@ -5,6 +5,7 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriBarangController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PeminjamanController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\RoleMiddleware; 
@@ -37,12 +38,11 @@ Route::middleware('auth', 'role:admin')->group(function () {
         Route::put('/kategori-barang/{id}', [KategoriBarangController::class, 'update'])->name('kategori.update');
         Route::delete('/kategori-barang/{id}', [KategoriBarangController::class, 'destroy'])->name('kategori.destroy');
 
-    
-        // Route::get('/peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman.index');
-        // Route::get('/peminjaman/{id}', [PeminjamanController::class, 'show'])->name('peminjaman.show');
-        // Route::post('/peminjaman/store', [PeminjamanController::class, 'store'])->name('peminjaman.store');
-        // Route::put('/peminjaman/{id}', [PeminjamanController::class, 'update'])->name('peminjaman.update');
-        // Route::delete('/peminjaman/{id}', [PeminjamanController::class, 'destroy'])->name('peminjaman.destroy');
+        Route::get('/peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman.index');
+        Route::get('/peminjaman/{id}', [PeminjamanController::class, 'show'])->name('peminjaman.show');
+        Route::post('/peminjaman/store', [PeminjamanController::class, 'store'])->name('peminjaman.store');
+        Route::put('/peminjaman/{id}', [PeminjamanController::class, 'update'])->name('peminjaman.update');
+        Route::delete('/peminjaman/{id}', [PeminjamanController::class, 'destroy'])->name('peminjaman.destroy');
 
         Route::get('/users', [UserController::class, 'index'])->name('users.index');
         Route::get('/users/create', [UserController::class, 'create'])->name('users.create');

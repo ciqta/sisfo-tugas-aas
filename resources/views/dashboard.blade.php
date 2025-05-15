@@ -6,67 +6,70 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body class="bg-gray-100 min-h-screen">
-
-    <div class="max-w-7xl mx-auto px-4 py-6">
-        <div class="flex justify-between items-center mb-6">
-            <h1 class="text-3xl font-bold">Dashboard</h1>
-
-            {{-- Logout Button (POST form) --}}
-            <form method="POST" action="{{ route('logout') }}">
+<body class="bg-gradient-to-tr from-slate-100 via-slate-200 to-slate-300 min-h-screen">
+<div class="flex">
+    {{-- Sidebar --}}
+    <div class="w-64 bg-white shadow-md h-screen fixed top-0 left-0 z-10">
+        <div class="px-6 py-4 text-xl font-bold text-gray-700 border-b">SISFO SARPRAS</div>
+        <nav class="px-4 py-4 space-y-2">
+            <a href="{{ route('dashboard') }}" class="block px-4 py-2 rounded bg-blue-200 font-bold">Dashboard</a>
+            <a href="{{ route('barang.index') }}" class="block px-4 py-2 rounded hover:bg-blue-100">Kelola Barang</a>
+            <a href="{{ route('kategori.index') }}" class="block px-4 py-2 rounded hover:bg-blue-100">Kelola Kategori</a>
+            <a href="{{ route('peminjaman.index') }}" class="block px-4 py-2 rounded bg-blue-200 font-bold">Kelola Peminjaman</a>
+            <a href="{{ route('users.index') }}" class="block px-4 py-2 rounded hover:bg-blue-100">Kelola User</a>
+            <form action="{{ route('logout') }}" method="POST" class="mt-4">
                 @csrf
-                <button type="submit"
-                    class="bg-red-600 hover:bg-red-700 text-white font-semibold px-3 py-2 rounded shadow">
-                    Logout
-                </button>
+                <button type="submit" class="w-full text-left px-4 py-2 rounded hover:bg-red-100 text-red-600 font-semibold">Logout</button>
             </form>
-        </div>
+        </nav>
+    </div>
 
-        {{-- Summary Cards --}}
+    <div class="ml-64 w-full p-6">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">Dashboard</h1>
+
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
             @foreach ($summaryData as $item)
-                <div class="p-4 rounded-xl text-white shadow {{ $item['color'] }}">
-                    <div class="text-sm uppercase tracking-wider">{{ $item['title'] }}</div>
+                <div class="p-4 rounded-2xl text-white shadow-md transform hover:scale-105 transition {{ $item['color'] }}">
+                    <div class="text-sm uppercase tracking-wider opacity-80">{{ $item['title'] }}</div>
                     <div class="text-2xl font-bold mt-1">{{ $item['value'] }}</div>
                 </div>
             @endforeach
         </div>
 
-        {{-- Chart Area --}}
-        <div class="bg-white p-6 rounded-xl shadow">
-            <h2 class="text-xl font-semibold mb-4">Statistik Bulanan (Dummy)</h2>
+        <div class="bg-white p-6 rounded-2xl shadow-md">
+            <h2 class="text-xl font-semibold mb-4 text-gray-700">Statistik Bulanan (Dummy)</h2>
             <canvas id="chart" height="100"></canvas>
         </div>
     </div>
+</div>
 
-    <script>
-        const ctx = document.getElementById('chart').getContext('2d');
-        const chart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: {!! json_encode(array_column($chartData, 'name')) !!},
-                datasets: [{
-                    label: 'Data',
-                    data: {!! json_encode(array_column($chartData, 'value')) !!},
-                    borderColor: 'rgba(59, 130, 246, 1)',
-                    backgroundColor: 'rgba(59, 130, 246, 0.2)',
-                    tension: 0.3,
-                    fill: true,
-                    pointRadius: 4,
-                    pointHoverRadius: 6,
-                }]
+<script>
+    const ctx = document.getElementById('chart').getContext('2d');
+    const chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: {!! json_encode(array_column($chartData, 'name')) !!},
+            datasets: [{
+                label: 'Data',
+                data: {!! json_encode(array_column($chartData, 'value')) !!},
+                borderColor: 'rgba(59, 130, 246, 1)',
+                backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                tension: 0.3,
+                fill: true,
+                pointRadius: 4,
+                pointHoverRadius: 6,
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: false }
             },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: { display: false }
-                },
-                scales: {
-                    y: { beginAtZero: true }
-                }
+            scales: {
+                y: { beginAtZero: true }
             }
-        });
-    </script>
-
+        }
+    });
+</script>
 </body>
 </html>

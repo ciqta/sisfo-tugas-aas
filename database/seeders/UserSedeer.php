@@ -16,7 +16,7 @@ class Usersedeer extends Seeder
     public function run(): void
     {
         DB::table('users')->insert([
-            'username' => Str::random(2),
+            'username' => 'admin',
             'email' => Str::random(2) . '@example.com',
             'password' => Hash::make('password'),
             'role' => 'admin',
@@ -24,7 +24,7 @@ class Usersedeer extends Seeder
             'major' => 'RPL'
         ]);
         DB::table('users')->insert([
-            'username' => Str::random(2),
+            'username' => 'user',
             'email' => Str::random(2) . '@example.com',
             'password' => Hash::make('password'),
             'role' => 'user',

@@ -60,8 +60,8 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         $request->validate([
-            'username' => 'sometimes|required|string|unique:users,username,' . $id . ',users_id',
-            'email' => 'sometimes|required|email|unique:users,email,' . $id . ',users_id',
+            'username' => 'sometimes|required|string|unique:users,username,' . $id . ',id_user',
+            'email' => 'sometimes|required|email|unique:users,email,' . $id . ',id_user',
             'password' => 'nullable|string|min:6',
             'role' => 'required|in:admin,user',
             'class' => 'sometimes|required|in:X,XI,XII',

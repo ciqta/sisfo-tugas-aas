@@ -16,24 +16,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'apiLogout'])->name('logout');
 });
 
-// // ------------------- USER ROLE -------------------
-// Route::middleware(['auth:sanctum', 'role:user'])->group(function () {
-//     Route::get('/user', [UserController::class, 'index']);
-
-//   // ---------------- DATA BARANG ----------------
-//     Route::get('/barang', [BarangController::class, 'index']);
-//     Route::get('/barang/{id}', [BarangController::class, 'show']);
-
-//     // ---------------- MENGAJUKAN PEMINJAMAN ----------------
-//     Route::post('/detail-peminjaman', [DetailPeminjamanController::class, 'store']);
-//     Route::post('/peminjaman', [PeminjamanController::class, 'store']);
-//     Route::get('/peminjaman/{id}', [PeminjamanController::class, 'show']);
-//     Route::get('/peminjaman-user', [PeminjamanController::class, 'userPeminjaman']);
-
-//     // ---------------- MENGAJUKAN PENGEMBALIAN ----------------
-//     Route::post('/detail-pengembalian', [DetailPengembalianController::class, 'store']);
-// });
-
 // ------------------- ADMIN ROLE -------------------
 Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
     // ---------------- USERS ----------------
@@ -57,18 +39,18 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
     Route::put('/kategori-barang/{id}', [KategoriBarangController::class, 'update'])->name('kategori-barang.update');
     Route::delete('/kategori-barang/{id}', [KategoriBarangController::class, 'destroy'])->name('kategori-barang.destroy');
 
-    // // ---------------- PEMINJAMAN ----------------
-    // Route::get('/peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman.index');
-    // Route::put('/peminjaman/{id}', [PeminjamanController::class, 'update'])->name('peminjaman.update');
-    // Route::delete('/peminjaman/{id}', [PeminjamanController::class, 'destroy'])->name('peminjaman.destroy');
-    // Route::put('/peminjaman/{id}/approve', [PeminjamanController::class, 'approve'])->name('peminjaman.approve');
-    // Route::put('/peminjaman/{id}/reject', [PeminjamanController::class, 'reject'])->name('peminjaman.reject');
+    // ---------------- PEMINJAMAN ----------------
+    Route::get('/peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman.index');
+    Route::put('/peminjaman/{id}', [PeminjamanController::class, 'update'])->name('peminjaman.update');
+    Route::delete('/peminjaman/{id}', [PeminjamanController::class, 'destroy'])->name('peminjaman.destroy');
+    Route::put('/peminjaman/{id}/approve', [PeminjamanController::class, 'approve'])->name('peminjaman.approve');
+    Route::put('/peminjaman/{id}/reject', [PeminjamanController::class, 'reject'])->name('peminjaman.reject');
 
-    // // ---------------- DETAIL PEMINJAMAN ----------------
-    // Route::get('/detail-peminjaman', [DetailPeminjamanController::class, 'index'])->name('detail-peminjaman.index');
-    // Route::get('/detail-peminjaman/{id}', [DetailPeminjamanController::class, 'show'])->name('detail-peminjaman.show');
-    // Route::put('/detail-peminjaman/{id}', [DetailPeminjamanController::class, 'update'])->name('detail-peminjaman.update');
-    // Route::delete('/detail-peminjaman/{id}', [DetailPeminjamanController::class, 'destroy'])->name('detail-peminjaman.destroy');
+    // ---------------- DETAIL PEMINJAMAN ----------------
+    Route::get('/detail-peminjaman', [DetailPeminjamanController::class, 'index'])->name('detail-peminjaman.index');
+    Route::get('/detail-peminjaman/{id}', [DetailPeminjamanController::class, 'show'])->name('detail-peminjaman.show');
+    Route::put('/detail-peminjaman/{id}', [DetailPeminjamanController::class, 'update'])->name('detail-peminjaman.update');
+    Route::delete('/detail-peminjaman/{id}', [DetailPeminjamanController::class, 'destroy'])->name('detail-peminjaman.destroy');
 
 
     // // ---------------- DETAIL PENGEMBALIAN ----------------
