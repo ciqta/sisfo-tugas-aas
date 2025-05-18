@@ -22,7 +22,7 @@ class PeminjamanSeeder extends Seeder
             [
                 'id_user' => 2,
                 'id_detail_peminjaman' => 2,
-                'status' => 'approved',
+                'status' => 'pending',
                 'soft_delete' => 0,
                 'created_at' => now(),
                 'updated_at' => now()

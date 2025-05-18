@@ -23,12 +23,12 @@ class PeminjamanController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'users_id' => 'required|exists:users,id_user',
+            'id_user' => 'required|exists:users,id_user',
             'id_detail_peminjaman' => 'required|exists:detail_peminjaman,id_detail_peminjaman',
         ]);
 
         $peminjaman = Peminjaman::create([
-            'users_id' => $validated['users_id'],
+            'id_user' => $validated['users_id'],
             'id_detail_peminjaman' => $validated['id_detail_peminjaman'],
             'status' => 'pending',
         ]);

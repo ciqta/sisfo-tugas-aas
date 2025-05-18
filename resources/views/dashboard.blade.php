@@ -15,7 +15,7 @@
             <a href="{{ route('dashboard') }}" class="block px-4 py-2 rounded bg-blue-200 font-bold">Dashboard</a>
             <a href="{{ route('barang.index') }}" class="block px-4 py-2 rounded hover:bg-blue-100">Kelola Barang</a>
             <a href="{{ route('kategori.index') }}" class="block px-4 py-2 rounded hover:bg-blue-100">Kelola Kategori</a>
-            <a href="{{ route('peminjaman.index') }}" class="block px-4 py-2 rounded bg-blue-200 font-bold">Kelola Peminjaman</a>
+            <a href="{{ route('peminjaman.index') }}" class="block px-4 py-2 rounded hover:bg-blue-200">Kelola Peminjaman</a>
             <a href="{{ route('users.index') }}" class="block px-4 py-2 rounded hover:bg-blue-100">Kelola User</a>
             <form action="{{ route('logout') }}" method="POST" class="mt-4">
                 @csrf

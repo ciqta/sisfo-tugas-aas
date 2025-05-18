@@ -28,7 +28,7 @@ class DetailPeminjaman extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'id_user');
+        return $this->belongsTo(User::class, 'users_id');
     }
 
     public function detail()
