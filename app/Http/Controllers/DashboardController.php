@@ -6,6 +6,9 @@ use App\Models\Barang;
 use App\Models\KategoriBarang;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\DetailPeminjaman;
+use App\Models\Peminjaman;
+use App\Models\DetailPengembalian;
 use carbon\Carbon;
 
 class DashboardController extends Controller
@@ -14,16 +17,14 @@ class DashboardController extends Controller
     {
         // Summary Data: Total barang, total kategori, total peminjaman, total pengembalian
         $totalAset = Barang::sum('stock');
-        $asetBaik = Barang::where('kondisi_barang', 'baik')->sum('stock');
-        $asetRusak = Barang::where('kondisi_barang', 'rusak')->sum('stock');
-        $totalKategori = KategoriBarang::count();
+        $totalPeminjaman = Peminjaman::where('status', 'approved')->count();
+        $totalPengembalian = DetailPengembalian::where('status', 'approve')->count();
         $totalUser = User::count();
 
         $summaryData = [
             ['title' => 'Total Aset', 'value' => number_format($totalAset), 'color' => 'bg-blue-500', 'icon' => 'package'],
-            ['title' => 'Aset Baik', 'value' => number_format($asetBaik), 'color' => 'bg-green-500', 'icon' => 'file-text'],
-            ['title' => 'Aset Rusak', 'value' => number_format($asetRusak), 'color' => 'bg-yellow-500', 'icon' => 'package'],
-            ['title' => 'Total Kategori', 'value' => number_format($totalKategori), 'color' => 'bg-teal-500', 'icon' => 'folder'],
+            ['title' => 'Total Peminjaman', 'value' => number_format($totalPeminjaman), 'color' => 'bg-green-500', 'icon' => 'file-text'],
+            ['title' => 'Total Pengembalian', 'value' => number_format($totalPengembalian), 'color' => 'bg-yellow-500', 'icon' => 'package'],
             ['title' => 'Total User', 'value' => number_format($totalUser), 'color' => 'bg-pink-500', 'icon' => 'users'],
         ];
 

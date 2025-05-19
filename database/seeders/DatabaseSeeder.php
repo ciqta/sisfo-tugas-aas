@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
             BarangSeeder::class,     
             DetailPeminjamanSeeder::class,      
             PeminjamanSeeder::class,
+            DetailPengembalianSeeder::class,
 ]);
 }
 }

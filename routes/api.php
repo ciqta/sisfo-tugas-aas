@@ -53,11 +53,11 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
     Route::delete('/detail-peminjaman/{id}', [DetailPeminjamanController::class, 'destroy'])->name('detail-peminjaman.destroy');
 
 
-    // // ---------------- DETAIL PENGEMBALIAN ----------------
-    // Route::get('/detail-pengembalian', [DetailPengembalianController::class, 'index'])->name('detail-pengembalian.index');
-    // Route::get('/detail-pengembalian/{id}', [DetailPengembalianController::class, 'show'])->name('detail-pengembalian.show');
-    // Route::put('/detail-pengembalian/{id}', [DetailPengembalianController::class, 'update'])->name('detail-pengembalian.update');
-    // Route::delete('/detail-pengembalian/{id}', [DetailPengembalianController::class, 'destroy'])->name('detail-pengembalian.destroy');
-    // Route::put('/detail-pengembalian/{id}/approve', [DetailPengembalianController::class, 'approve'])->name('detail-pengembalian.approve');
-    // Route::put('/detail-pengembalian/{id}/reject', [DetailPengembalianController::class, 'reject'])->name('detail-pengembalian.reject');
+    // ---------------- DETAIL PENGEMBALIAN ----------------
+    Route::get('/detail-pengembalian', [DetailPengembalianController::class, 'index'])->name('detail-pengembalian.index');
+    Route::get('/detail-pengembalian/{id}', [DetailPengembalianController::class, 'show'])->name('detail-pengembalian.show');
+    Route::put('/detail-pengembalian/{id}', [DetailPengembalianController::class, 'update'])->name('detail-pengembalian.update');
+    Route::delete('/detail-pengembalian/{id}', [DetailPengembalianController::class, 'destroy'])->name('detail-pengembalian.destroy');
+    Route::put('/detail-pengembalian/{id}/approve', [DetailPengembalianController::class, 'approve'])->name('detail-pengembalian.approve');
+    Route::put('/detail-pengembalian/{id}/reject', [DetailPengembalianController::class, 'reject'])->name('detail-pengembalian.reject');
 });
