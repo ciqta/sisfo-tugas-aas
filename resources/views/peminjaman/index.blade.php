@@ -21,6 +21,7 @@
                 <a href="{{ route('peminjaman.index') }}" class="block px-4 py-2 rounded bg-blue-200 font-bold">Kelola Peminjaman</a>
                 <a href="{{ route('detail-pengembalian.index') }}" class="block px-4 py-2 rounded hover:bg-blue-100">Kelola Pengembalian</a>
                 <a href="{{ route('users.index') }}" class="block px-4 py-2 rounded hover:bg-blue-100">Kelola User</a>
+                <a href="{{ route('laporan.index') }}" class="block px-4 py-2 rounded hover:bg-blue-200">Laporan</a>    
                 <form action="{{ route('logout') }}" method="POST" class="mt-4">
                     @csrf
                     <button type="submit"

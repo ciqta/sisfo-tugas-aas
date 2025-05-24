@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriBarangController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\LaporanController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\RoleMiddleware; 
@@ -52,11 +53,30 @@ Route::middleware('auth', 'role:admin')->group(function () {
         Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
         Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 
-        // Route::get('/detail-pengembalian', [DetailPengembalianController::class, 'index'])->name('detail-pengembalian.index');
-        // Route::get('/detail-pengembalian/{id}', [DetailPengembalianController::class, 'show'])->name('detail-pengembalian.show');
-        // Route::post('/detail-pengembalian/store', [DetailPengembalianController::class, 'store'])->name('detail-pengembalian');
-        // Route::put('/detail-pengembalian/{id}', [DetailPengembalianController::class, 'update'])->name('detail-pengembalian.update');
-        // Route::delete('/detail-pengembalian/{id}', [DetailPengembalianController::class, 'destroy'])->name('detail-pengembalian.destroy');
+        Route::get('/detail-pengembalian', [DetailPengembalianController::class, 'index'])->name('detail-pengembalian.index');
+        Route::get('/detail-pengembalian/{id}', [DetailPengembalianController::class, 'show'])->name('detail-pengembalian.show');
+        Route::post('/detail-pengembalian/store', [DetailPengembalianController::class, 'store'])->name('detail-pengembalian');
+        Route::put('/detail-pengembalian/{id}', [DetailPengembalianController::class, 'update'])->name('detail-pengembalian.update');
+        Route::delete('/detail-pengembalian/{id}', [DetailPengembalianController::class, 'destroy'])->name('detail-pengembalian.destroy');
+
+        // Rute Laporan
+Route::prefix('laporan')->group(function () {
+    Route::get('/', [LaporanController::class, 'index'])->name('laporan.index');
+    
+    Route::get('/barang', [LaporanController::class, 'laporanBarang'])->name('laporan.barang');
+    Route::get('/barang/pdf', [LaporanController::class, 'exportBarangPdf'])->name('laporan.barang.pdf');
+    Route::get('/barang/excel', [LaporanController::class, 'exportBarangExcel'])->name('laporan.barang.excel');
+
+    Route::get('/peminjaman', [LaporanController::class, 'laporanPeminjaman'])->name('laporan.peminjaman.form');
+    Route::post('/peminjaman', [LaporanController::class, 'laporanPeminjaman'])->name('laporan.peminjaman.filter');
+    Route::get('/peminjaman/pdf', [LaporanController::class, 'exportPeminjamanPdf'])->name('laporan.peminjaman.pdf');
+    Route::get('/peminjaman/excel', [LaporanController::class, 'exportPeminjamanExcel'])->name('laporan.peminjaman.excel');
+
+    Route::get('/pengembalian', [LaporanController::class, 'laporanPengembalian'])->name('laporan.pengembalian.form');
+    Route::post('/pengembalian', [LaporanController::class, 'laporanPengembalian'])->name('laporan.pengembalian.filter');
+    Route::get('/pengembalian/pdf', [LaporanController::class, 'exportPengembalianPdf'])->name('laporan.pengembalian.pdf');
+    Route::get('/pengembalian/excel', [LaporanController::class, 'exportPengembalianExcel'])->name('laporan.pengembalian.excel');
+});
 });
 
 // Logout (web)
